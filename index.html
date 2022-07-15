@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- CSS -->
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+    <!-- icônes  -->
+    <script src="https://kit.fontawesome.com/40409bbb33.js" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/svg" href="./assets/logo.svg" />
+    <!-- bootstrap  -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <!-- polices  -->
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet" />
+    <title>Les petits plats</title>
+  </head>
+  <body>
+    <header role="banner">
+      <div id="logo">
+        <img src="./assets/icones/logo.svg" alt="logo du site" />
+        <h1>Les petits plats</h1>
+      </div>
+    </header>
+    <main>
+      <section id="searchsSection">
+        <div class="search">
+          <input type="text" class="searchTerm" placeholder="Rechercher une recette" />
+          <button type="submit" class="searchButton">
+            <img src="./assets/icones/loop.svg" class="icnLoop" />
+          </button>
+        </div>
+
+        <div class="tagSection">
+          <div class="tags"></div>
+        </div>
+
+        <div class="inputsSearchSection">
+          <div class="inputIngredients inputs">
+            <div class="gatherBtnIcn">
+              <input type="text" class="inpBtn" id="inpBtn1" placeholder="Ingredients" />
+              <span class="arrowContent arrContent1"
+                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn1"
+              /></span>
+            </div>
+            <ul class="ulBtn1 ulBtn"></ul>
+          </div>
+
+          <div class="inputAppareils">
+            <div class="gatherBtnIcn">
+              <input type="text" class="inpBtn" id="inpBtn2" placeholder="Appareils" />
+              <span class="arrowContent arrContent2"
+                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn2"
+              /></span>
+            </div>
+            <ul class="ulBtn2 ulBtn"></ul>
+          </div>
+
+          <div class="inputUstensiles">
+            <div class="gatherBtnIcn">
+              <input type="text" class="inpBtn" id="inpBtn3" placeholder="Ustensiles" />
+              <span class="arrowContent arrContent3"
+                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn3"
+              /></span>
+            </div>
+            <ul class="ulBtn3 ulBtn"></ul>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="./scripts/pages/index.js"></script>
+    <footer></footer>
+  </body>
+</html>
