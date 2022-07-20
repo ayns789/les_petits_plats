@@ -1,0 +1,210 @@
+#recipes-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5em;
+    margin-top: 3.12em;
+    overflow: hidden;
+    max-width: 80vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cardContent{
+    display: flex;
+    flex-direction:column;
+
+}
+
+.imgCards{
+    width: 100%;
+    height: 220px;
+    background-color: #C7BEBE;
+    border-radius: 5px 5px 0 0 ;
+}
+
+.subcardContent{
+    background-color: #E7E7E7;
+    padding: 1em;
+    border-radius: 0 0 5px 5px;
+    height: 220px;
+}
+
+.contentHeader{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* .blockNameHeader{
+} */
+
+.recipeName{
+    font-size: 22px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 14em;
+}
+
+.blockTimeRecipe{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+
+.icnHorloge{
+    width: 1.2em;
+    margin-right: 0.4em;
+    margin-top: 0.1em;
+}
+
+.timeHeader{
+    padding: 0;
+    margin: 0;
+    font-size: 21px;
+    font-weight: 500;
+    /* width: 100%; */
+}
+
+.blockParagSubCard{
+    display:flex;
+    flex-direction: row;
+    margin-top: 1em;
+    
+}
+
+.blockListIngredients{
+    width: 50%;
+}
+
+.blockRecipeDescription{
+    width: 50%;
+}
+
+.paragIngredients{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 15px;
+    /* max-height: 100px; */
+    padding-right: 0.5em;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow:  ellipsis;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+.recipeDescription{
+    font-size: 14px;
+    font-family: 'latoRegular';
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow:  ellipsis;
+    max-height: 100px;
+    line-height: 14px;
+}
+@media all and (max-width: 2000px) {
+    /* .paragIngredients{
+        width: 180px;
+    } */
+    
+    .recipeDescription{
+        width: 210px;
+    }
+  }
+@media all and (max-width: 1860px) {
+    .paragIngredients{
+        width: 180px;
+    }
+    .recipeName {
+        width: 12.5em;
+    }
+
+    .recipeDescription{
+        width: 200px;
+    }
+  }
+@media all and (max-width: 1760px) {
+    .recipeName {
+        width: 10.5em;
+    }
+    .paragIngredients{
+        width: 170px;
+    }
+    #recipes-section {
+        gap: 3em;
+        
+    }
+    
+    .recipeDescription{
+        width: 170px;
+    }
+  }
+@media all and (max-width: 1600px) {
+    .paragIngredients{
+        width: 180px;
+    }
+    .recipeName {
+        width: 10em;
+    }
+    #recipes-section {
+        gap: 2em;
+        
+    }
+    
+    .recipeDescription{
+        width: 180px;
+    }
+  }
+@media all and (max-width: 1580px) {
+    #recipes-section {
+        gap: 2em;
+    }
+    .recipeName {
+        width: 8.5em;
+    }
+  }
+@media all and (max-width: 1492px) {
+    #recipes-section {
+        gap: 5em;
+        grid-template-columns: 1fr 1fr;
+        
+    }
+    .paragIngredients{
+        width: 100%;
+    }
+    .recipeName {
+        width: 20em;
+    }
+    
+    .recipeDescription{
+        width: 100%;
+    }
+    .cardContent{
+        width:35vw;
+    }
+  }
+  @media all and (max-width: 1250px) {
+    .recipeName {
+        width: 12em;
+    }
+  }
+  @media all and (max-width: 1130px) {
+    .recipeName {
+        width: 10em;
+    }
+  }
+  @media all and (max-width: 1040px) {
+    .recipeName {
+        width: 8em;
+    }
+  }
+
+
+

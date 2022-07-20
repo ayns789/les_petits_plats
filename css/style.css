@@ -1,4 +1,5 @@
 @import url("normalize.css");
+@import url("recipes.css");
 
 @font-face {
     font-family: 'robotoRegular';
@@ -102,19 +103,24 @@ body {
   }
 
   /* ----------------- SEARCH INPUTS ----------------- */
+  .hidden {
+    display: none;
+  }
   .inputsSearchSection {
     margin-top: 2em;
     display: flex;
     align-items: center;
     justify-content: flex-start;
   }
+  .inputs {
+    position: relative;
+  }
   .gatherBtnIcn {
     display: flex;
     align-items: center;
     height: 69px;
-    /* position: relative; */
-    /* width: 170px; */
-    width: 200px;
+    position: relative;
+    margin-right: 2em;
   }
   
   .inpBtn {
@@ -124,43 +130,33 @@ body {
     border: none;
     outline: none;
     padding-left: 15px;
-    /* padding-right: 40px; */
-    border-radius: 5px 0 0 5px;
+    border-radius: 5px 5px 5px 5px;
     color: white;
     position: relative;
-    /* display: inline-grid; */
-  /* align-items: center; */
-    /* padding-right: 1em; */
   }
+  
   .inpBtn:focus {
     font-size: 18px;
-    /* position: absolute;  */
-    /* width: 100%; */
-    /* max-width: 300px; */
   }
 
-  #inpBtn1 {
+  #inpBtn1, .ulBtn1 {
       background-color: #3282F7;
     }
-  #inpBtn2 {
+  #inpBtn2, .ulBtn2 {
       background-color: #68D9A4;
     }
-  #inpBtn3 {
+  #inpBtn3, .ulBtn3 {
       background-color: #ED6454;
     }
     .gatherBtnIcn  ::placeholder {
-      /* padding: 12px; */
       color: white;
-      /* border: none; */
       font-size: 18px;
       font-weight: 700;
     }
   .arrowContent {
-    /* width: 32px; */
-    padding-right: 16px;
-    height: 100%;
-    border-radius: 0 5px 5px 0;
-    margin-right: 2em;
+    position: absolute;
+  right: 10%;
+  top: 0;
 }
   .arrContent1 {
     background-color: #3282F7;
@@ -172,6 +168,117 @@ body {
     background-color: #ED6454;
 }
 
+.ulBtn {
+    position: absolute;
+    top: 69px;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    padding: 0 0 1rem 1rem;
+    column-width: 170px;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 400;
+  }
+  .ulBtn li {
+    padding-bottom: 1rem;
+  }
+  /* .filters {
+    margin-bottom: 1rem;
+  }
+  
+  .filter_container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .filter_secondary h2 {
+    position: absolute;
+    left: 12%;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-family: "Lato";
+  }
+  
+  .filter_secondary {
+    display: flex;
+    position: relative;
+    align-items: center;
+    border-radius: 5px;
+    margin-right: 2rem;
+    min-width: 10.625rem;
+    height: 4.3125rem;
+  }
+  .filter_secondary input {
+    border: none;
+    border-radius: 5px;
+    font-size: 1.125rem;
+    padding-left: 1rem;
+    color: white;
+  }
+  .filter_secondary input::placeholder, .filter_secondary input:focus {
+    color: white;
+    outline: none;
+  }
+  
+  .filter_ingredients {
+    background-color: #3282f7;
+  }
+  .filter_ingredients input {
+    background-color: #3282f7;
+  }
+  
+  .filter_appliance {
+    background-color: #68d9a4;
+  }
+  .filter_appliance input {
+    background-color: #68d9a4;
+  }
+  
+  .filter_utensil {
+    background-color: #ed6454;
+  }
+  .filter_utensil input {
+    background-color: #ed6454;
+  }
+  
+  .filter_arrow {
+    position: absolute;
+    right: 8%;
+  }
+  
+  .lists {
+    position: absolute;
+    top: 65px;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 400;
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    padding: 0 0 1rem 1rem;
+    column-width: 170px;
+
+
+    width: 40%;
+        height: 500px;
+        position: absolute;
+        border-radius: 5px;
+        display: none;
+  }
+  .lists li {
+    padding-bottom: 1rem;
+  }
+  
+  .filter_ingredients_list {
+    background-color: #3282f7;
+  }
+  
+  .filter_appliance_list {
+    background-color: #68d9a4;
+  }
+  
+  .filter_utensil_list {
+    background-color: #ed6454;
+  } */
   /* -------------- ICONES SECTION SEARCH ------------ */
   .icnLoop {
     margin-left: 0;
