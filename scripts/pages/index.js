@@ -3,6 +3,12 @@ import {recipesPageFactory} from "../factories/recipesPageFactory.js";
 let recipesFile = [];
 let recipes = [];
 let recipesList = [];
+let arr1 = [];
+let arr2 = [];
+let arr3 = [];
+let arrIngredients = [];
+let arrUstensiles = [];
+let arrAppareils = [];
     async function getRecipes() {
         
         try{
@@ -19,6 +25,36 @@ let recipesList = [];
 
         recipes = recipesFile.recipes;
         // console.log(recipes)
+        localStorage.setItem('recipesList', JSON.stringify(recipes));
+        
+
+        recipes.forEach(recipe => {
+            // on fait les tableaux nécessaires
+            recipe.ingredients.map((ingredient) => {
+                arr1.push(ingredient.ingredient);
+            });
+            recipe.ustensils.map((ustensile) => {
+                arr2.push(ustensile);
+            });
+            arr3.push(recipe.appliance);
+        });
+
+           
+        // suppression des doublons, prenant en compte majuscules / minuscules 
+        let triArrIngredients = arr1.map(x => typeof x === 'string' ? x.toLowerCase() : x);
+         arrIngredients =  Array.from(new Set(triArrIngredients));
+        let triArrUstensiles = arr2.map(x => typeof x === 'string' ? x.toLowerCase() : x);
+        arrUstensiles =  Array.from(new Set(triArrUstensiles));
+        let triArrAppareils = arr3.map(x => typeof x === 'string' ? x.toLowerCase() : x);
+        arrAppareils =  Array.from(new Set(triArrAppareils));
+        // arrIngredients = [...new Set (arrIngredients)].sort();
+        // arrUstensiles = [...new Set (arrUstensiles)].sort();
+        // arrAppareils = [...new Set (arrAppareils)].sort();
+
+        // enregistrement des tableaux dans le localstorage
+        localStorage.setItem('ingredientsList', JSON.stringify(arrIngredients));
+        localStorage.setItem('ustensilesList', JSON.stringify(arrUstensiles));
+        localStorage.setItem('appareilsList', JSON.stringify(arrAppareils));
 
         return recipes;
     }
@@ -44,181 +80,117 @@ let recipesList = [];
         });
     };
     
-    // function updateData(data) {
-    //     // récupérer la liste des photographies du DOM
-    //     const photographiesSection = document.querySelector(".photographies-section");
+  
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+const bigSearchBar = document.getElementById("searchTerm");
+
+function nullableRecipesSection(){
+    const recipesSection = document.getElementById("recipes-section");
+    const messageError = document.createElement("p");
+    messageError.textContent = " Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson », etc.";
+    messageError.style.display = "flex";
+    messageError.style.fontSize = "36px";
+    messageError.style.width = "80vw";
+    messageError.style.flexDirection = "row";
+    messageError.style.alignItems = "center";
+    messageError.style.color = "black";
+    messageError.style.marginTop = "2em";
+    recipesSection.appendChild(messageError);
     
-    //     // let selectedWorksPhotograph = data;
-    //     // console.log(selectedWorksPhotograph)
-    //     // localStorage.setItem('selectedWorksPhotograph', JSON.stringify(data));
-    //     // vider la liste
-    //     photographiesSection.textContent = "";
-    //     data.forEach((media) => {
-    //         // récupération des articles html à travailler
-    //         const filterPhotographieModel = photographerPageFactory();
-    //         // récupération des méthodes du design pattern factory
-    //         const filterUserPhotoBody = filterPhotographieModel.getUserPhotoBody(media);
-    //         // injection des éléments créés dans les éléments html récupérés
-    //         photographiesSection.appendChild(filterUserPhotoBody);
-    //     });
+}
+
+
+
+function updateRecipesSection(recipesList){
+        // récupération de la section html à travailler
+        const recipesSection = document.getElementById("recipes-section");
     
-    // }
-    
-    // function btnDropdownFilter(selectedWorksPhotograph){
-    //     // récupérer l'ensemble du dropdown
-    //     const dropdowns = document.querySelectorAll('.dropdownBlockDrop');
+        // vider la section
+        recipesSection.textContent = "";
+
+        // itération pour sélectionner chaque recette de la liste des recettes
+        recipesList.forEach((recipe) => {
+            // récupération du design pattern factory global
+            const recipeModel = recipesPageFactory();
+            // récupération de méthode du design pattern factory avec l'objet recette en argument
+            const recipeBody = recipeModel.getRecipeCard(recipe);
+            // injection des éléments créés dans la section des recettes
+            recipesSection.appendChild(recipeBody);
+        });
+
+}
+
+
+// function filterRecipes(event){
+    bigSearchBar.addEventListener("input", (e) => {
+        let recipesList = JSON.parse(localStorage.getItem("recipesList"));
+    // bigSearchBar.addEventListener("input", filterRecipes(recipesList))
+    let value = e.target.value;
+
+        // // méthode 2 filtre générique
+        // const containsDeep = (text) => (value) => {
+        //     if(!value) return false;
+        //     const valueType = typeof value;
             
-    //     // faire une boucle sur les éléments du dropdown
-    //     dropdowns.forEach(dropdown => {
-    //         // récupérer chaque élément du dropdown
-    //         const select = dropdown.querySelector(".selectBtnDrop");
-    //         const caret = dropdown.querySelector(".caretDrop");
-    //         const menu = dropdown.querySelector(".menuDrop");
-    //         const options = dropdown.querySelectorAll(".menuDrop a");
-    //         const selected = dropdown.querySelector(".selectedDrop");
-    //         // const dropdown1 = dropdown.querySelector(".sectionDrop");
+        //     if(valueType === 'string') {
+        //       return value.toLowerCase().indexOf(text.toLowerCase()) > -1;
+        //     }
+        //     if(Array.isArray(value)) {
+        //       return value.some(containsDeep(text));
+        //     }
+        //     if(valueType === 'object') {
+        //       return Object.values(value).some(containsDeep(text));
+        //     }
+        //     return false;
+        //   };
+
+        let resultResearchInPage = [];
+
         
-    
-    //         // fonction pour ouvrir le dropdown             
-    //         function addMenuDrop(){
-    //             select.classList.add('selectBtnDrop-clicked');
-    //             // ajout classe pour rotation de la flèche du bouton dropdown
-    //             caret.classList.add('caretDrop-rotate');
-    //             // ajout d'une classe de style pour le menu déroulant ouvert
-    //             menu.classList.add('menuDrop-open');
-    //             // on change l'état de la aria-expended 
-    //             select.ariaExpanded = "true";
-    //         }
+        function isEmpty(value){
+            return (value == null || value.length === 0);
+          }
+
+        if(value.length >= 3){
+            resultResearchInPage = recipesList.filter(recipesList => recipesList.name.toLowerCase().includes(value.toLowerCase()) 
+            || recipesList.description.toLowerCase().includes(value.toLowerCase()) 
+            || recipesList.ingredients.some ((ingredient) => ingredient.ingredient.toLowerCase().includes(value.toLowerCase())));
+            // || recipesList.ingredients.ingredient.filter(containsDeep(value)));
+
+        //    resultResearchInPage = recipesList.filter(containsDeep(value));
+        //    resultResearchInPage = recipesList.filter(recipesList => recipesList.name(containsDeep(value))
+        //    || recipesList.description(containsDeep(value)));
+
             
-    //         // fonction pour fermer le dropdown
-    //         function initializDropdown() {
-    //             menu.classList.remove('menuDrop-open');
-    //             caret.classList.remove('caretDrop-rotate');
-    //             select.classList.remove('selectBtnDrop-clicked');
-    //             select.ariaExpanded = "false";
-    //         }
-    
-    //         if(mainHidden.ariaHidden == "false") { 
-    
-    //         // ajout d'un event au click sur le bouton du dropdown
-    //         select.addEventListener('click', () => {
-    //             // ajout d'une classe de style pour des effets sur le bouton dropdown
-    //             select.classList.toggle('selectBtnDrop-clicked');
-    //             // ajout classe pour rotation de la flèche du bouton dropdown
-    //             caret.classList.toggle('caretDrop-rotate');
-    //             // ajout d'une classe de style pour le menu déroulant ouvert
-    //             menu.classList.toggle('menuDrop-open');
-    //             // on change l'état de la aria-expended 
-    //             select.ariaExpanded = "true";
-    //         })
-    
-    //         // select.addEventListener('focusin', () => {
-    //         //     select.style.background = "#DB8876";
-                
-    //         // })
-    //         // select.addEventListener('focusout', () => {
-    //         //     select.style.background = "#901C1C";
-    //         // })  
+            recipesList = resultResearchInPage;
+            updateRecipesSection(recipesList);
+
+            if(isEmpty(recipesList)){
+                nullableRecipesSection()
+            } 
             
-        
-    //         // si le menu dropdown est ouvert et qu'on clique ailleurs, il se ferme et le caret du bouton reprend sa position 
-    //         document.addEventListener("mouseup", (event) => {
-    //                 if(menu.classList.contains('menuDrop-open') && !event.target.classList.contains('selectBtnDrop')){
-    //                 // if(!event.target.classList.contains('selectBtnDrop')){
-    //                     initializDropdown();
-    //                 };  
-    //         });
-    
-            
-    //         // on écoute le menu, si le keyboard arrive dessus, on l'ouvre, si on en sort, on le referme
-    //                 options.forEach(option =>{
-    //                     // ajout d'un event au click du clavier sur une option du menu sélectionnée
-    //                     option.addEventListener('keydown', (e) => {
-    //                         addMenuDrop();
-    //                         if (e.code == "Enter") {
-    //                             initializDropdown();
-    //                             option.style.background = "#901C1C";
-    //                         }
-    //                         option.addEventListener('focusout', () => {
-    //                             initializDropdown();
-    //                             option.style.background = "#901C1C";
-    //                         })
-    //                         option.addEventListener('focusin', () => {
-    //                             addMenuDrop();
-    //                             option.style.background = "#DB8876";
-    //                         })
-    //                     })
-    
-    //                     option.addEventListener('focusin', (e) => {
-    //                         addMenuDrop(); 
-    //                         option.style.background = "#DB8876";
-    //                         option.style.width = "10.2em";
-    //                         // option.style.marginRight = "-1em";
-    //                     })          
-                        
-    //                 })
-    //             }
-                    
-    
-    //         function filtersGesture(){
-    //         // création d'un tableau vide à objectif de prendre la valeur du filtre sélectionné
-    //         let resultFilters = [];
-    //         if(mainHidden.ariaHidden == "false") {
-    //         // boucle sur tous les éléments de la liste
-    //         options.forEach(option =>{
-    //             // ajout d'un event au click sur une option du menu sélectionnée
-    //             option.addEventListener('click', () => {
-    //                 // affecter la valeur texte de l'option cliquée à la valeur du texte du bouton dropdown
-    //                 selected.innerText = option.innerText;
-    //                 option.style.background = "#901C1C";
-    //                 // filtre en fonction de l'élément sélectionné du menu + réécriture des éléments du menu
-    //                 if (selected.innerText == 'Popularité') {
-    //                     resultFilters = selectedWorksPhotograph.sort((a, b) => (a.likes > b.likes ? 1 : -1));
-    //                     options[0].innerText = 'Date';
-    //                     options[1].innerText = 'Titre';
-    //                     // select.ariaExpanded = "false";
-    //                 } else if (selected.innerText == 'Date') {
-    //                     resultFilters = selectedWorksPhotograph.sort((a, b) => (a.date > b.date ? 1 : -1));
-    //                     options[0].innerText = 'Popularité';
-    //                     options[1].innerText = 'Titre';
-    //                     // select.ariaExpanded = "false";
-    //                 } else if (selected.innerText == 'Titre') {
-    //                     resultFilters = selectedWorksPhotograph.sort((a, b) => (a.title > b.title ? 1 : -1));
-    //                     options[0].innerText = 'Popularité';
-    //                     options[1].innerText = 'Date';
-    //                     // select.ariaExpanded = "false";
-    //                 }
-    
-    //                 // on inscrit la liste filtrée dans le storage pour la lightbox
-    //                 localStorage.setItem('selectedWorksPhotograph', JSON.stringify(resultFilters));
-        
-    //                 // envoi de la liste filtrée en fonction de la sélection faite, à la fonction qui 
-    //                 updateData(resultFilters);
-                    
-    //                 })
-    //             })
-                
-    //         }
-    
-    //     }
-    
-    //     filtersGesture();
-    
-    //     })
-    // }
-    
+        } else if (value.length < 3){
+            recipesList = "";
+            recipesList = JSON.parse(localStorage.getItem("recipesList"));
+            updateRecipesSection(recipesList);
+        }
+
+    })
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//     const list = ['apple', 'banana', 'orange', 'strawberry']
+// const size = 3
+// const items = list.slice(0, size) // res: ['apple', 'banana', 'orange']
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////
     async function init() {
         // récupérer le résultat de la fonction qui récupère la liste des recettes
         recipesList = await getRecipes(recipes);
-        // // appeler la fonction pour détecter le bouton dropdown et gérer les filtres de la liste des photographies
-        // btnDropdownFilter(selectedWorksPhotograph);
-        // envoyer par défaut la liste triée sur les likes au design pattern factory via la fonction displayData 
+        
         displayData(recipesList);
     };
     
     init();
 
-    // getRecipes()
 
     // // fonction pour recalculer une hauteur d'un textarea :
     // let textarea = document.querySelector(".resize-ta");
@@ -235,30 +207,123 @@ let recipesList = [];
     //     inputs.style.width = calcWidth(inputs.value) + "px";
     // });
 
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+// ------------------- les 3 inputs spécifiques ---------------------
+
+const btn1 = document.getElementById("visualBtn1");
+const btn2 = document.getElementById("visualBtn2");
+const btn3 = document.getElementById("visualBtn3");
+const realInput1 = document.getElementById("realInput1");
+const realInput2 = document.getElementById("realInput2");
+const realInput3 = document.getElementById("realInput3");
 const input1 = document.getElementById("inpBtn1");
 const input2 = document.getElementById("inpBtn2");
 const input3 = document.getElementById("inpBtn3");
+const ulBtn1 = document.getElementById("ulBtn1");
+// let li = document.createElement('li');
 
+let numberIteration = 0;
+let tabIngredients = [];
+// let resultResearchInIngredients;
 
+btn1.addEventListener('click', () => {
+    btn1.style.display = "none";
+    realInput1.style.display = "block";
+    // input1.click();
+    let dataRecipes = "";
+     dataRecipes = JSON.parse(localStorage.getItem("recipesList"));
+    ulBtn1.innerHTML = "";
+    const li = document.createElement('li');
 
-input1.addEventListener("focusin", () => {
-    document.getElementById("arrBtn1").src="./assets/icones/arrowUp.svg";
+dataRecipes.forEach((recipeItem) => {
+    for ( let i = 0; i < recipeItem.ingredients.length; i++) {
+        // if (i > 30) { break; }
+        const li = document.createElement('li');
+         tabIngredients = recipeItem.ingredients[i].ingredient;
+            li.innerHTML = tabIngredients;
+            // console.log(tabIngredients)
+            // li.innerHTML = recipeItem.ingredients[i].ingredient;
+            ulBtn1.appendChild(li);
+            numberIteration++
+            if (numberIteration > 30) { 
+                li.innerHTML = "";
+                break; 
+            }
+            
+            
+        }
+})
+input1.addEventListener("input", (e) => {
+    let value = e.target.value;
+    let tabIngredients = JSON.parse(localStorage.getItem("ingredientsList"));
+    // console.log(tabIngredients)
+    if(value.length >= 3){
+        ulBtn1.innerHTML = ""; 
+                let resultResearch = [];
+                // filtrer et récupérer les éléments correspondants à la saisie utilisateur
+                resultResearch = tabIngredients.filter(tabIngredients =>  tabIngredients.toLowerCase().includes(value.toLowerCase()));
+            
+                // inscrire chaque résultat sous forme de li, dans l'élément "ul"
+                for(let i = 0; i < resultResearch.length; i++){
+                    const li = document.createElement('li');  
+                    li.innerHTML = resultResearch[i];
+                    ulBtn1.appendChild(li);
+                    // arrIngred.push(result);
+                }
+
+                // comportement visuel de l'input et du sous menu "ul"
+                if(resultResearch.length <= 10){
+                    ulBtn1.style.gridTemplateColumns = "repeat(1, 1fr)";
+                    ulBtn1.style.width = "15vw";
+                    input1.style.width = "15vw !important";
+                    // realInput1.style.width = "15vw !important";
+                } else if(resultResearch.length >= 11 && resultResearch.length <= 20){
+                    ulBtn1.style.gridTemplateColumns = "repeat(2, 2fr)";
+                    ulBtn1.style.width = "28vw";
+                    input1.style.width = "28vw";
+                } else {
+                    ulBtn1.style.gridTemplateColumns = "repeat(3, 3fr)";
+                    ulBtn1.style.width = "40vw";
+                    input1.style.width = "40vw";
+                }
+
+// console.log(result);
+
+            }
+            
+    })
+
+    ulBtn1.classList.remove('hidden');
     
-    input1.addEventListener("focusout", () => {
-        document.getElementById("arrBtn1").src="./assets/icones/arrowDown.svg";
-    })
 })
-input2.addEventListener("focusin", () => {
-    document.getElementById("arrBtn2").src="./assets/icones/arrowUp.svg";
-    input2.addEventListener("focusout", () => {
-        document.getElementById("arrBtn2").src="./assets/icones/arrowDown.svg";
-    })
+
+
+
+
+// console.log(listIngredients.substring(9, 3000))
+// console.log(ulBtn1)
+ 
+
+
+input1.addEventListener('focusout', () => {
+    realInput1.style.display = "none";
+    btn1.style.display = "flex";
+    ulBtn1.classList.add('hidden');
+    numberIteration = 0;
 })
-input3.addEventListener("focusin", () => {
-    document.getElementById("arrBtn3").src="./assets/icones/arrowUp.svg";
-    input3.addEventListener("focusout", () => {
-        document.getElementById("arrBtn3").src="./assets/icones/arrowDown.svg";
-    })
-})
+
+// const list = ['apple', 'banana', 'orange', 'strawberry']
+// const size = 3
+// const items = list.slice(0, size) // res: ['apple', 'banana', 'orange']
+
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////

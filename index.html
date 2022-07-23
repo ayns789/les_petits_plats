@@ -28,7 +28,7 @@
     <main>
       <section id="searchsSection">
         <div class="search">
-          <input type="text" class="searchTerm" placeholder="Rechercher une recette" />
+          <input type="text" id="searchTerm" placeholder="Rechercher une recette" />
           <button type="submit" class="searchButton">
             <img src="./assets/icones/loop.svg" class="icnLoop" />
           </button>
@@ -39,35 +39,83 @@
         </div>
 
         <div class="inputsSearchSection">
+          <!--   -->
+          <!--   -->
+          <!-- partie ingredient  -->
           <div class="inputIngredients inputs">
-            <div class="gatherBtnIcn">
-              <input type="text" class="inpBtn inputs" id="inpBtn1" placeholder="Ingredients" />
-              <span class="arrowContent arrContent1"
-                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn1"
+            <!-- bouton ingredients  -->
+            <div class="gatherBtnIcn visualBtn" id="visualBtn1">
+              <div class="btnFirstVisual" id="btnFirstVisual1">
+                <h2>Ingredients</h2>
+                <span class="arrowContent arrContent1">
+                  <img src="./assets/icones/arrowDown.svg" class="arrowBtn" />
+                </span>
+              </div>
+            </div>
+            <!-- input ingredients  -->
+            <div class="gatherBtnIcn" id="realInput1">
+              <input
+                type="text"
+                class="inpBtn"
+                id="inpBtn1"
+                placeholder="Rechercher un ingredient"
+              />
+              <span class="arrowContent" id="arrContent1"
+                ><img src="./assets/icones/arrowUp.svg" class="arrowBtn"
               /></span>
-              <ul class="ulBtn1 ulBtn hidden"></ul>
+              <ul class="ulBtn hidden" id="ulBtn1"></ul>
             </div>
           </div>
-
+          <!--   -->
+          <!--   -->
+          <!-- partie appareil  -->
           <div class="inputAppareils inputs">
-            <div class="gatherBtnIcn">
-              <input type="text" class="inpBtn" id="inpBtn2" placeholder="Appareils" />
+            <!-- bouton appareil  -->
+            <div class="gatherBtnIcn visualBtn" id="visualBtn2">
+              <div class="btnFirstVisual" id="btnFirstVisual2">
+                <h2>Appareils</h2>
+                <span class="arrowContent" id="arrContent2">
+                  <img src="./assets/icones/arrowDown.svg" class="arrowBtn" />
+                </span>
+              </div>
+            </div>
+            <!-- input appareil  -->
+            <div class="gatherBtnIcn" id="realInput2">
+              <input type="text" class="inpBtn" id="inpBtn2" placeholder="Rechercher un appareil" />
               <span class="arrowContent arrContent2"
-                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn2"
+                ><img src="./assets/icones/arrowUp.svg" class="arrowBtn"
               /></span>
-              <ul class="ulBtn2 ulBtn hidden"></ul>
+              <ul class="ulBtn hidden" id="ulBtn2"></ul>
             </div>
           </div>
-
+          <!--   -->
+          <!--   -->
+          <!-- partie ustensile  -->
           <div class="inputUstensiles inputs">
-            <div class="gatherBtnIcn">
-              <input type="text" class="inpBtn" id="inpBtn3" placeholder="Ustensiles" />
-              <span class="arrowContent arrContent3"
-                ><img src="./assets/icones/arrowDown.svg" class="arrowBtn" id="arrBtn3"
+            <!-- bouton ustensile  -->
+            <div class="gatherBtnIcn visualBtn" id="visualBtn3">
+              <div class="btnFirstVisual" id="btnFirstVisual3">
+                <h2>Ustensiles</h2>
+                <span class="arrowContent" id="arrContent3">
+                  <img src="./assets/icones/arrowDown.svg" class="arrowBtn" />
+                </span>
+              </div>
+            </div>
+            <!-- input ustensile  -->
+            <div class="gatherBtnIcn" id="realInput3">
+              <input
+                type="text"
+                class="inpBtn"
+                id="inpBtn3"
+                placeholder="Rechercher un ustensile"
+              />
+              <span class="arrowContent" id="arrContent3"
+                ><img src="./assets/icones/arrowUp.svg" class="arrowBtn"
               /></span>
-              <ul class="ulBtn3 ulBtn hidden"></ul>
+              <ul class="ulBtn hidden" id="ulBtn3"></ul>
             </div>
           </div>
+          <!--   -->
         </div>
       </section>
       <section id="recipes-section"></section>

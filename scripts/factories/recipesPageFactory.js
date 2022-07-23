@@ -119,6 +119,9 @@ export function recipesPageFactory( ) {
                 if(recipe.ingredients[i].unit){
                     if(recipe.ingredients[i].unit == "g" || recipe.ingredients[i].unit == "cl" || recipe.ingredients[i].unit == "ml"){
                         testParag += recipe.ingredients[i].ingredient + ": " + recipe.ingredients[i].quantity + recipe.ingredients[i].unit + "<br />";
+                    } else if (recipe.ingredients[i].unit == "grammes" || recipe.ingredients[i].unit == "gramme" ){
+                        recipe.ingredients[i].unit = "g";
+                        testParag += recipe.ingredients[i].ingredient + ": " + recipe.ingredients[i].quantity + recipe.ingredients[i].unit + "<br />";
                     } else {
                         testParag += recipe.ingredients[i].ingredient + ": " + recipe.ingredients[i].quantity + " " + recipe.ingredients[i].unit + "<br />";
                     }

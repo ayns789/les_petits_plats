@@ -9,6 +9,13 @@
     margin-right: auto;
 }
 
+/* #messageError {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 36px;
+    color: black;
+} */
 .cardContent{
     display: flex;
     flex-direction:column;
