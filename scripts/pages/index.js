@@ -146,25 +146,31 @@ function updateRecipesSection(recipesList){
 
         let resultResearchInPage = [];
 
-        
+        // fonction pour controler si la recherche n'a aucun résultat
         function isEmpty(value){
             return (value == null || value.length === 0);
           }
+        //   let testListIng = [];
+        //    testListIng = recipesList.ingredients;
 
         if(value.length >= 3){
             resultResearchInPage = recipesList.filter(recipesList => recipesList.name.toLowerCase().includes(value.toLowerCase()) 
             || recipesList.description.toLowerCase().includes(value.toLowerCase()) 
+            // || testListIng.ingredient.toLowerCase().includes(value.toLowerCase()) )
             || recipesList.ingredients.some ((ingredient) => ingredient.ingredient.toLowerCase().includes(value.toLowerCase())));
+            // || recipesList.filter(x => x.ingredients.every(y => y.ingredient.toLowerCase().includes(value.toLowerCase()))));
             // || recipesList.ingredients.ingredient.filter(containsDeep(value)));
-
+            
         //    resultResearchInPage = recipesList.filter(containsDeep(value));
         //    resultResearchInPage = recipesList.filter(recipesList => recipesList.name(containsDeep(value))
         //    || recipesList.description(containsDeep(value)));
 
             
             recipesList = resultResearchInPage;
+            // appeler fonction pour mettre à jour la section avec les résultats de la recherche
             updateRecipesSection(recipesList);
 
+            // si la recherche n'a aucun résultat, appeler la fonction qui affiche message d'erreur
             if(isEmpty(recipesList)){
                 nullableRecipesSection()
             } 
@@ -237,11 +243,11 @@ let tabIngredients = [];
 btn1.addEventListener('click', () => {
     btn1.style.display = "none";
     realInput1.style.display = "block";
-    // input1.click();
+    input1.style.width = "40vw";
     let dataRecipes = "";
      dataRecipes = JSON.parse(localStorage.getItem("recipesList"));
     ulBtn1.innerHTML = "";
-    const li = document.createElement('li');
+    // const li = document.createElement('li');
 
 dataRecipes.forEach((recipeItem) => {
     for ( let i = 0; i < recipeItem.ingredients.length; i++) {
@@ -264,9 +270,13 @@ dataRecipes.forEach((recipeItem) => {
 input1.addEventListener("input", (e) => {
     let value = e.target.value;
     let tabIngredients = JSON.parse(localStorage.getItem("ingredientsList"));
+    ulBtn1.style.gridTemplateColumns = "repeat(3, 3fr)";
+    ulBtn1.style.width = "40vw";
+    input1.style.width = "40vw";
     // console.log(tabIngredients)
     if(value.length >= 3){
         ulBtn1.innerHTML = ""; 
+        input1.style.width = "40vw";
                 let resultResearch = [];
                 // filtrer et récupérer les éléments correspondants à la saisie utilisateur
                 resultResearch = tabIngredients.filter(tabIngredients =>  tabIngredients.toLowerCase().includes(value.toLowerCase()));
@@ -278,27 +288,41 @@ input1.addEventListener("input", (e) => {
                     ulBtn1.appendChild(li);
                     // arrIngred.push(result);
                 }
-
-                // comportement visuel de l'input et du sous menu "ul"
-                if(resultResearch.length <= 10){
-                    ulBtn1.style.gridTemplateColumns = "repeat(1, 1fr)";
-                    ulBtn1.style.width = "15vw";
-                    input1.style.width = "15vw !important";
-                    // realInput1.style.width = "15vw !important";
-                } else if(resultResearch.length >= 11 && resultResearch.length <= 20){
-                    ulBtn1.style.gridTemplateColumns = "repeat(2, 2fr)";
-                    ulBtn1.style.width = "28vw";
-                    input1.style.width = "28vw";
-                } else {
-                    ulBtn1.style.gridTemplateColumns = "repeat(3, 3fr)";
-                    ulBtn1.style.width = "40vw";
-                    input1.style.width = "40vw";
-                }
-
-// console.log(result);
-
+            // comportement visuel de l'input et du sous menu "ul"
+            if( resultResearch.length <= 10){
+                ulBtn1.style.gridTemplateColumns = "repeat(1, 1fr)";
+                ulBtn1.style.width = "15vw";
+                input1.style.width = "15vw";
+                // realInput1.style.width = "15vw !important";
+            } else if(resultResearch.length >= 11 && resultResearch.length <= 20){
+                ulBtn1.style.gridTemplateColumns = "repeat(2, 2fr)";
+                ulBtn1.style.width = "28vw";
+                input1.style.width = "28vw";
+            } else if (resultResearch.length >= 21 && resultResearch.length <= 30){
+                ulBtn1.style.gridTemplateColumns = "repeat(3, 3fr)";
+                ulBtn1.style.width = "40vw";
+                input1.style.width = "40vw";
+            } 
+        }  else {
+            let numberIteration = 0;
+                input1.style.width = "40vw";
+                let dataRecipes = "";
+                ulBtn1.innerHTML = "";
+                dataRecipes = JSON.parse(localStorage.getItem("recipesList"));
+                    dataRecipes.forEach((recipeItem) => {
+                        for ( let i = 0; i < recipeItem.ingredients.length; i++) {
+                            const li = document.createElement('li');
+                            tabIngredients = recipeItem.ingredients[i].ingredient;
+                            li.innerHTML = tabIngredients;
+                            ulBtn1.appendChild(li);
+                            numberIteration++
+                                if (numberIteration > 30) { 
+                                    li.innerHTML = "";
+                                    break; 
+                                }
+                            }
+                    })
             }
-            
     })
 
     ulBtn1.classList.remove('hidden');
