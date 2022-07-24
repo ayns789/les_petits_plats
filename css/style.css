@@ -291,8 +291,7 @@ top: 0;
     color: #ffffff;
     font-size: 1.125rem;
     font-weight: 400;
-    /* height: 19.6em; */
-    height: 20.6em;
+    max-height: 20.6em;
     /* display: -webkit-box; */
     /* overflow: hidden; */
     /* text-overflow:  ellipsis; */
@@ -300,7 +299,8 @@ top: 0;
     /* -webkit-box-orient: vertical; */
   }
   .ulBtn li {
-    
+    display: table-cell;
+              float: none;
     padding-bottom: 1rem;
     max-width: 10em;
     height: 1.5em;
