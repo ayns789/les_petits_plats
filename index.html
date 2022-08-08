@@ -28,14 +28,19 @@
     <main>
       <section id="searchsSection">
         <div class="search">
-          <input type="text" id="searchTerm" placeholder="Rechercher une recette" />
+          <input
+            type="text"
+            id="searchTerm"
+            placeholder="Rechercher une recette"
+            autocomplete="off"
+          />
           <button type="submit" class="searchButton">
             <img src="./assets/icones/loop.svg" class="icnLoop" />
           </button>
         </div>
 
-        <div class="tagSection">
-          <div class="tags"></div>
+        <div id="tagSection">
+          <div id="tags"></div>
         </div>
 
         <div class="inputsSearchSection">
@@ -53,11 +58,12 @@
               </div>
             </div>
             <!-- input ingredients  -->
-            <div class="gatherBtnIcn" id="realInput1">
+            <div class="gatherBtnIcn" id="contentInput1">
               <input
                 type="text"
                 class="inpBtn"
                 id="inpBtn1"
+                autocomplete="off"
                 placeholder="Rechercher un ingredient"
               />
               <span class="arrowContent" id="arrContent1"
@@ -80,8 +86,14 @@
               </div>
             </div>
             <!-- input appareil  -->
-            <div class="gatherBtnIcn" id="realInput2">
-              <input type="text" class="inpBtn" id="inpBtn2" placeholder="Rechercher un appareil" />
+            <div class="gatherBtnIcn" id="contentInput2">
+              <input
+                type="text"
+                class="inpBtn"
+                id="inpBtn2"
+                autocomplete="off"
+                placeholder="Rechercher un appareil"
+              />
               <span class="arrowContent arrContent2"
                 ><img src="./assets/icones/arrowUp.svg" class="arrowBtn"
               /></span>
@@ -102,11 +114,12 @@
               </div>
             </div>
             <!-- input ustensile  -->
-            <div class="gatherBtnIcn" id="realInput3">
+            <div class="gatherBtnIcn" id="contentInput3">
               <input
                 type="text"
                 class="inpBtn"
                 id="inpBtn3"
+                autocomplete="off"
                 placeholder="Rechercher un ustensile"
               />
               <span class="arrowContent" id="arrContent3"

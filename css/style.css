@@ -92,14 +92,64 @@ body {
   }
 
   /* --------------------- TAGS --------------------- */
-  .tagSection {
-    display:none;
+  #tagSection {
+    /* margin-top: 1em; */
+    margin-bottom: -1em;
+    max-width: 80vw;
   }
-  .tags {
+  #tags {
     display:flex;
+    flex-wrap: wrap;
     flex-direction: row;
+    /* justify-content: flex-start; */
     align-items: center;
-    justify-content: flex-start
+    max-width: 80vw;
+    height: 100%;
+  }
+ 
+  .tagLi {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2em;
+    margin-top: 1em;
+    /* width: 100%; */
+    /* max-width: 100%; */
+    /* min-width: 10em; */
+    /* padding: 0.5em; */
+    max-height: 60px;
+    border: none;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 5px 5px 5px 5px;
+    color: white;
+    position: relative;
+  }
+  .tagLi h3 {
+    /* width: 100%; */
+    padding-top:0.5em;
+    font-size: 18px;
+  }
+  .btnCloseTags {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+  }
+  .tagLi img {
+    padding: 0.5em;
+    font-size: 18px;
+  }
+  .tagLi-ing {
+    background-color: #3282F7;
+  }
+  .tagLi-app {
+    background-color: #68D9A4;
+  }
+  .tagLi-ust {
+    background-color: #ED6454;
   }
 
   /* ----------------- SEARCH INPUTS ----------------- */
@@ -112,63 +162,7 @@ body {
     align-items: center;
     justify-content: flex-start;
   }
-  /* .inputs, .btnFirstVisual {
-    position: relative;
-  }
-  .gatherBtnIcn, .btnFirstVisual {
-    display: flex;
-    align-items: center;
-    height: 69px;
-    position: relative;
-    margin-right: 2em;
-  }
-  .btnFirstVisual h2{
-    font-size: 18px;
-    padding-right: 4em;
-  }
-  .btnFirstVisual {
-    display: flex;
-    align-items: center;
-    
-  }
-  #visualBtn1 {
-    display: none;
-    width: 100%;
-  }
-  #visualBtn2 {
-    display: none;
-    width: 100%;
-  }
-  #visualBtn3 {
-    display: none;
-    width: 100%;
-  }
-  .realInput1 {
-    display: none;
-  }
-  .realInput2 {
-    display: none;
-  }
-  .realInput3 {
-    display: none;
-  }
 
-  .inpBtn, .btnFirstVisual {
-    width: 100%;
-    height: 100%;
-    max-height: 69px;
-    border: none;
-    outline: none;
-    padding-left: 15px;
-    border-radius: 5px 5px 5px 5px;
-    color: white;
-    position: relative;
-  }
-  
-  .inpBtn:focus {
-    font-size: 18px;
-  }
- */
  /* ------------------------  */
  #visualBtn1 {
   /* display: none; */
@@ -185,15 +179,15 @@ body {
   /* width: 100%; */
   min-width: 9em;
 }
-#realInput1 {
+#contentInput1 {
   display: none;
   /* width: 15em; */
 }
-#realInput2 {
+#contentInput2 {
   display: none;
   /* width: 15em; */
 }
-#realInput3 {
+#contentInput3 {
   display: none; 
   /* width: 15em; */
 }
@@ -239,8 +233,20 @@ body {
   border-radius: 5px 5px 5px 5px;
   color: white;
   position: relative;
+  /* transform: translateX(0); */
+  /* animation: show-detail-container 0.7s 0.55s ; */
+  width: 100%;
+  transition: width 0.5s;
+  /* transition: transform 0.5s; */
 }
-
+/* @keyframes show-detail-container {
+  0% {
+    width: 15vw;
+  }
+  100% {
+    width: 40vw;
+  }
+} */
 .inpBtn:focus {
   font-size: 18px;
 }
@@ -278,11 +284,11 @@ top: 0;
 .ulBtn {
     position: absolute;
     display: grid;
-  grid-template-columns: repeat(3, 3fr);
-  grid-gap: 15px;
-  grid-auto-rows: 20px;
+    grid-template-columns: repeat(3, 3fr);
+    grid-gap: 15px;
+    grid-auto-rows: 20px;
     top: 66px;
-    width: 40vw;
+    /* width: 100%; */
     border-radius: 0 0 5px 5px;
     z-index: 1;
     padding: 0.5em 1em 1em 1em;
@@ -291,7 +297,9 @@ top: 0;
     color: #ffffff;
     font-size: 1.125rem;
     font-weight: 400;
-    max-height: 20.6em;
+    /* max-height: 20.6em; */
+    height: auto;
+    transition: width 0.5s, height 0.5s;
     /* display: -webkit-box; */
     /* overflow: hidden; */
     /* text-overflow:  ellipsis; */
@@ -300,14 +308,26 @@ top: 0;
   }
   .ulBtn li {
     display: table-cell;
-              float: none;
+    float: none;
     padding-bottom: 1rem;
-    max-width: 10em;
+    /* max-width: 10em; */
+    /* width: 100%; */
     height: 1.5em;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
   }
+  .btnLi {
+    cursor: pointer;
+      }
+      .btnLi h3 {
+    font-size: 18px;
+      }
+      .btnLi img {
+    font-size: 1em;
+      }
+  
   
   /* -------------- ICONES SECTION SEARCH ------------ */
   .icnLoop {

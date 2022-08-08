@@ -93,9 +93,9 @@
 }
 
 .paragIngredients{
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
-    line-height: 15px;
+    line-height: 16px;
     /* max-height: 100px; */
     padding-right: 0.5em;
     display: -webkit-box;
@@ -105,8 +105,13 @@
     -webkit-box-orient: vertical;
 }
 
+.namesIng {
+    font-weight: 700;
+}
+
 .recipeDescription{
-    font-size: 14px;
+    font-size: 15px;
+    font-weight: 500;
     font-family: 'latoRegular';
     display: -webkit-box;
     -webkit-line-clamp: 6;
@@ -114,7 +119,7 @@
     overflow: hidden;
     text-overflow:  ellipsis;
     max-height: 100px;
-    line-height: 14px;
+    line-height: 15px;
 }
 @media all and (max-width: 2000px) {
     /* .paragIngredients{
