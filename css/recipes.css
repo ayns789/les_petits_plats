@@ -217,6 +217,19 @@
         width: 8em;
     }
   }
+  @media all and (max-width: 900px) {
+    #recipes-section {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 5em;
+        /* margin-top: 3.12em;
+        overflow: hidden;
+        max-width: 80vw;
+        margin-left: auto;
+        margin-right: auto; */
+    }
+    
+  }
 
 
 
