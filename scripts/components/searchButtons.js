@@ -163,11 +163,11 @@ function filterTabsForUl(value, stringId) {
     arrIngredientsOnPage = Array.from(new Set(specificly));
   }
   if (stringId === 'app') {
-    specificly = recipesList.map((recipe) => recipe.appliance);
+    specificly = dataRecipes.map((recipe) => recipe.appliance);
     arrAppareilsOnPage = Array.from(new Set(specificly));
   }
   if (stringId === 'ust') {
-    specificlyS = recipesList.map((recipe) =>
+    specificlyS = dataRecipes.map((recipe) =>
       recipe.ustensils.map((ustensil) => ustensil.toString().toLowerCase())
     );
     specificly = [].concat(...specificlyS);
