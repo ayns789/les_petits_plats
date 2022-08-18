@@ -645,3 +645,62 @@ function bigSearchBar1(e) {
 }
 
 bigSearchBar1('citron');
+// question sur stackoverflow
+// #### Hi,
+// ##### To filter various data at the same time in the following table,
+// ##### I'm trying to find an simple alternative to avoid nested loops for this scenario :
+// <pre>
+// const carsList =
+//   {
+//       "id": 1,
+//       "name" : "Fiat",
+//       "description" : "blabla",
+//       "options":
+//           {
+//               "option" : "electric windows",
+//               "quantity" : 4
+//           },
+//           {
+//               "option" : "air bags",
+//               "quantity" : 2
+//           }
+//        ]
+//       }
+//     ]
+// </pre>
+//     // value = e.target.value;
+// <pre>
+// result = carsList.filter(
+//   (car) =>
+//     car.name.toLowerCase().includes(value.toLowerCase()) ||
+//     car.description.toLowerCase().includes(value.toLowerCase()) ||
+//     car.options.some((option) =>
+//       option.option.toString().toLowerCase().includes(value.toString().toLowerCase())
+//     )
+// );
+// </pre>
+// ***********
+
+// ##### also to filter with an array of values ( tagsExist ( the id's are the names ) ) ​​as follows :
+
+// <pre>
+// let tagsExist = [...document.querySelectorAll('#tags [id]')].map((elm) => elm.id);
+
+// resultResearchInPage = carsList.filter((element) =>
+//   tagsExist.every(
+//     (x) =>
+//       element.name.toString().toLowerCase().includes(x) ||
+//       element.description.toString().toLowerCase().includes(x) ||
+//       element.options.some((option) => option.option.toString().toLowerCase().includes(x))
+//   )
+// );
+// </pre>
+
+// ##### the "some" in the "filter" are problematic, could you help me, please ?
+
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////

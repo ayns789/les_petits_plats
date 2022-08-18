@@ -53,6 +53,66 @@ function setAttributes(el, attrs) {
     el.setAttribute(key, attrs[key]);
   }
 }
+/////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
+
+// function laboTest() {
+//   let arrTest = [...recipesListOriginal];
+
+//   let output = [...arrTest].map((recipe) => ({
+//     ...recipe,
+//     ingredients: Object.fromEntries(
+//       recipe.ingredients.map(({ ingredient, ...rest }) => [ingredient, rest])
+//     ),
+//   }));
+
+//   // console.log(output);
+//   // console.log(output.key);
+//   // console.log(Object.keys(output));
+//   // console.log(Object.keys(output.ingredients));
+//   // console.log(JSON.stringify(output.ingredients));
+//   ////////
+//   // if (typeof output.ingredients === 'undefined') {
+//   //   console.log('output.ingredients : ⛔️ property is undefined');
+//   // } else {
+//   //   console.log('output.ingredients : ✅ property is defined');
+//   // }
+//   ////////
+//   // let x = JSON.parse(JSON.stringify(output));
+//   // console.log(x.ingredients);
+//   // const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
+//   // const hasOwn = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
+//   let valTest = 'citron';
+//   let resultIngr = output.filter(
+//     (recipe) =>
+//       // recipe.ingredients?.valTest
+//       // valTest.value in recipe.ingredients
+//       // recipe.ingredients === valTest
+//       // recipe.valTest !== undefined
+//       recipe.ingredients.hasOwnProperty(valTest)
+//     // hasOwn(recipe.ingredients, valTest)
+//     // Object.hasOwn(recipe.ingredients, valTest)
+//     // Object.prototype.hasOwn(recipe.ingredients, valTest)
+//     // Object.prototype.hasOwnProperty.call(recipe.ingredients, valTest)
+//     // Object.keys(recipe.ingredients).some((key) => key === valTest)
+//     // Object.keys(recipe.ingredients).indexOf(valTest)
+//     ///////////////
+//   );
+//   console.log(resultIngr);
+//   //////////////////
+//   // let valTest = ['citron', 'sucre'];
+//   // let resultIngr = [...output].filter(
+//   //   (recipe) => valTest.some((prop) => recipe.hasOwnProperty(prop))
+//   // );
+//   // console.log(resultIngr);
+// }
+
+// laboTest();
+
+//////////////////////////////////////////////////
+///////////////////////////////////////////////////
+//////////////////////////////////////////////////
 
 // ------------------- gestion recherche de l'input principal ---------------------
 bigSearchBar.addEventListener('input', (e) => {
@@ -62,50 +122,57 @@ bigSearchBar.addEventListener('input', (e) => {
   let resultResearchInPage = [];
   let recipesList = [];
   recipesList = [...recipesListOriginal];
+  let tabTest = [];
 
   if (value.length >= 3) {
-    // resultResearchInPage = recipesList.filter(
-    //   (recipe) =>
-    //     recipe.name.toLowerCase().includes(value.toLowerCase()) ||
-    //     recipe.description.toLowerCase().includes(value.toLowerCase()) ||
-    //     recipe.ingredients.some((ingredient) =>
-    //       ingredient.ingredient.toString().toLowerCase().includes(value.toString().toLowerCase())
-    //     )
-    // );
-    function myIncludes(container, value) {
-      let returnValue = false;
-      // si l'élément est présent, il renvoie la valeur de position
-      let testing = container.indexOf(value);
-      if (testing >= 0) {
-        returnValue = true;
-      }
-      return returnValue;
-    }
-
-    let tabTakeRecipes = [];
-    for (let i = 0; i < recipesList.length; i++) {
-      if (
-        myIncludes(recipesList[i].name.toString().toLowerCase(), value.toString().toLowerCase()) ||
-        myIncludes(
-          recipesList[i].description.toString().toLowerCase(),
-          value.toString().toLowerCase()
+    resultResearchInPage = recipesList.filter(
+      (recipe) =>
+        recipe.name.toLowerCase().includes(value.toLowerCase()) ||
+        recipe.description.toLowerCase().includes(value.toLowerCase()) ||
+        recipe.ingredients.some((ingredient) =>
+          ingredient.ingredient.toString().toLowerCase().includes(value.toString().toLowerCase())
         )
-      ) {
-        tabTakeRecipes.push(recipesList[i]);
-      }
-      let ingredientsTab = recipesList[i].ingredients;
-      for (let j = 0; j < ingredientsTab.length; j++) {
-        if (
-          myIncludes(
-            ingredientsTab[j].ingredient.toString().toLowerCase(),
-            value.toString().toLowerCase()
-          )
-        ) {
-          tabTakeRecipes.push(recipesList[i]);
-        }
-      }
-    }
-    resultResearchInPage = Array.from(new Set([...tabTakeRecipes]));
+    );
+
+    // console.log(result);
+
+    // const propertyNames = Object.values(tabspecificlyS);
+    // let objListIng = { ...[...tabspecificlyS] };
+    // console.log(tabTest2);
+    // function myIncludes(container, value) {
+    //   let returnValue = false;
+    //   // si l'élément est présent, il renvoie la valeur de position
+    //   let testing = container.indexOf(value);
+    //   if (testing >= 0) {
+    //     returnValue = true;
+    //   }
+    //   return returnValue;
+    // }
+
+    // let tabTakeRecipes = [];
+    // for (let i = 0; i < recipesList.length; i++) {
+    //   if (
+    //     myIncludes(recipesList[i].name.toString().toLowerCase(), value.toString().toLowerCase()) ||
+    //     myIncludes(
+    //       recipesList[i].description.toString().toLowerCase(),
+    //       value.toString().toLowerCase()
+    //     )
+    //   ) {
+    //     tabTakeRecipes.push(recipesList[i]);
+    //   }
+    //   let ingredientsTab = recipesList[i].ingredients;
+    //   for (let j = 0; j < ingredientsTab.length; j++) {
+    //     if (
+    //       myIncludes(
+    //         ingredientsTab[j].ingredient.toString().toLowerCase(),
+    //         value.toString().toLowerCase()
+    //       )
+    //     ) {
+    //       tabTakeRecipes.push(recipesList[i]);
+    //     }
+    //   }
+    // }
+    // resultResearchInPage = Array.from(new Set([...tabTakeRecipes]));
 
     // console.log(Array.from(new Set(resultResearchInPage)));
     // console.log(resultResearchInPage);
@@ -316,8 +383,8 @@ function displayListByTag(value, stringId, calledByRemoveTags, isEmptyString) {
       (x) =>
         element.ustensils.toString().toLowerCase().includes(x) ||
         element.appliance.toString().toLowerCase().includes(x) ||
-        element.ingredients.some((ingredients) =>
-          ingredients.ingredient.toString().toLowerCase().includes(x)
+        element.ingredients.some((ingredient) =>
+          ingredient.ingredient.toString().toLowerCase().includes(x)
         )
     )
   );
