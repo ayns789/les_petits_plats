@@ -61,16 +61,7 @@ bigSearchBar.addEventListener('input', (e) => {
   recipesList = [...recipesListOriginal];
 
   if (value.length >= 3) {
-    resultResearchInPage = recipesList.filter(
-      (recipe) =>
-        recipe.name.toLowerCase().includes(value.toLowerCase()) ||
-        recipe.description.toLowerCase().includes(value.toLowerCase()) ||
-        recipe.ingredients.some((ingredient) =>
-          ingredient.ingredient.toString().toLowerCase().includes(value.toString().toLowerCase())
-        )
-    );
-    /////////////
-
+    // secondary algo
     function myIncludes(container, value) {
       let returnValue = false;
       // si l'élément est présent, il renvoie la valeur de position
