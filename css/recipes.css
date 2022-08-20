@@ -8,18 +8,9 @@
     margin-left: auto;
     margin-right: auto;
 }
-
-/* #messageError {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 36px;
-    color: black;
-} */
 .cardContent{
     display: flex;
     flex-direction:column;
-
 }
 
 .imgCards{
@@ -43,9 +34,6 @@
     justify-content: space-between;
 }
 
-/* .blockNameHeader{
-} */
-
 .recipeName{
     font-size: 22px;
     padding: 0;
@@ -60,7 +48,6 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    
 }
 
 .icnHorloge{
@@ -74,14 +61,12 @@
     margin: 0;
     font-size: 21px;
     font-weight: 500;
-    /* width: 100%; */
 }
 
 .blockParagSubCard{
     display:flex;
     flex-direction: row;
     margin-top: 1em;
-    
 }
 
 .blockListIngredients{
@@ -96,7 +81,6 @@
     font-size: 15px;
     font-weight: 500;
     line-height: 16px;
-    /* max-height: 100px; */
     padding-right: 0.5em;
     display: -webkit-box;
     overflow: hidden;
@@ -122,10 +106,6 @@
     line-height: 15px;
 }
 @media all and (max-width: 2000px) {
-    /* .paragIngredients{
-        width: 180px;
-    } */
-    
     .recipeDescription{
         width: 210px;
     }
@@ -222,12 +202,17 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: 5em;
-        /* margin-top: 3.12em;
-        overflow: hidden;
-        max-width: 80vw;
-        margin-left: auto;
-        margin-right: auto; */
     }
+    .imgCards {
+        width: 80vw;
+    }
+    .subcardContent {
+        width: 80vw;
+    }
+    .recipeName {
+        width: 12.5em;
+    }
+
     
   }
 

@@ -1,7 +1,4 @@
 import { recipesPageFactory } from '../factories/recipesPageFactory.js';
-// import {gestureSomeButtons} from "../component/searchButtons.js";
-
-// gestureSomeButtons;
 
 let recipesFile = [];
 let recipes = [];
@@ -27,12 +24,6 @@ async function getRecipes() {
   return recipes;
 }
 
-// ['mousemove', 'touchmove'].forEach(function(event) { window.addEventListener(event, handler);});
-
-// "mousemove touchmove".split(" ").forEach(function(e){
-//     window.addEventListener(e,mouseMoveHandler,false);
-//   });
-
 async function displayData(recipesList) {
   // récupération de la section html à travailler
   const recipesSection = document.getElementById('recipes-section');
@@ -48,7 +39,7 @@ async function displayData(recipesList) {
   });
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////
 
 async function init() {
   // récupérer le résultat de la fonction qui récupère la liste des recettes

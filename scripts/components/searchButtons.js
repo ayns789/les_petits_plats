@@ -37,11 +37,8 @@ function updateRecipesSection(recipesList) {
   });
 
   actualizedRecipesList = [...recipesList];
-  // console.log(actualizedRecipesList);
-  // majDataUlByListRecipes(actualizedRecipesList);
-  // actualizDataUnderFilters();
 }
-// console.log(actualizedRecipesList);
+
 // fonction pour controler si la recherche n'a aucun résultat
 function isEmpty(value) {
   return !value || value.length === 0;
@@ -53,76 +50,15 @@ function setAttributes(el, attrs) {
     el.setAttribute(key, attrs[key]);
   }
 }
-/////////////////////////////////////////////////////
-///////////////////////////////////////////////////////
-//////////////////////////////////////////////////////
 
-// function laboTest() {
-//   let arrTest = [...recipesListOriginal];
-
-//   let output = [...arrTest].map((recipe) => ({
-//     ...recipe,
-//     ingredients: Object.fromEntries(
-//       recipe.ingredients.map(({ ingredient, ...rest }) => [ingredient, rest])
-//     ),
-//   }));
-
-//   // console.log(output);
-//   // console.log(output.key);
-//   // console.log(Object.keys(output));
-//   // console.log(Object.keys(output.ingredients));
-//   // console.log(JSON.stringify(output.ingredients));
-//   ////////
-//   // if (typeof output.ingredients === 'undefined') {
-//   //   console.log('output.ingredients : ⛔️ property is undefined');
-//   // } else {
-//   //   console.log('output.ingredients : ✅ property is defined');
-//   // }
-//   ////////
-//   // let x = JSON.parse(JSON.stringify(output));
-//   // console.log(x.ingredients);
-//   // const hasOwn = (obj, key) => Object.prototype.hasOwnProperty.call(obj, key);
-//   // const hasOwn = Function.prototype.call.bind(Object.prototype.hasOwnProperty);
-//   let valTest = 'citron';
-//   let resultIngr = output.filter(
-//     (recipe) =>
-//       // recipe.ingredients?.valTest
-//       // valTest.value in recipe.ingredients
-//       // recipe.ingredients === valTest
-//       // recipe.valTest !== undefined
-//       recipe.ingredients.hasOwnProperty(valTest)
-//     // hasOwn(recipe.ingredients, valTest)
-//     // Object.hasOwn(recipe.ingredients, valTest)
-//     // Object.prototype.hasOwn(recipe.ingredients, valTest)
-//     // Object.prototype.hasOwnProperty.call(recipe.ingredients, valTest)
-//     // Object.keys(recipe.ingredients).some((key) => key === valTest)
-//     // Object.keys(recipe.ingredients).indexOf(valTest)
-//     ///////////////
-//   );
-//   console.log(resultIngr);
-//   //////////////////
-//   // let valTest = ['citron', 'sucre'];
-//   // let resultIngr = [...output].filter(
-//   //   (recipe) => valTest.some((prop) => recipe.hasOwnProperty(prop))
-//   // );
-//   // console.log(resultIngr);
-// }
-
-// laboTest();
-
-//////////////////////////////////////////////////
-///////////////////////////////////////////////////
 //////////////////////////////////////////////////
 
 // ------------------- gestion recherche de l'input principal ---------------------
 bigSearchBar.addEventListener('input', (e) => {
-  // bigSearchBar.addEventListener("input", filterRecipes(recipesList))
   let value = e.target.value;
-
   let resultResearchInPage = [];
   let recipesList = [];
   recipesList = [...recipesListOriginal];
-  let tabTest = [];
 
   if (value.length >= 3) {
     resultResearchInPage = recipesList.filter(
@@ -133,49 +69,44 @@ bigSearchBar.addEventListener('input', (e) => {
           ingredient.ingredient.toString().toLowerCase().includes(value.toString().toLowerCase())
         )
     );
+    /////////////
 
-    // console.log(result);
+    function myIncludes(container, value) {
+      let returnValue = false;
+      // si l'élément est présent, il renvoie la valeur de position
+      let testing = container.indexOf(value);
+      if (testing >= 0) {
+        returnValue = true;
+      }
+      return returnValue;
+    }
 
-    // const propertyNames = Object.values(tabspecificlyS);
-    // let objListIng = { ...[...tabspecificlyS] };
-    // console.log(tabTest2);
-    // function myIncludes(container, value) {
-    //   let returnValue = false;
-    //   // si l'élément est présent, il renvoie la valeur de position
-    //   let testing = container.indexOf(value);
-    //   if (testing >= 0) {
-    //     returnValue = true;
-    //   }
-    //   return returnValue;
-    // }
+    let tabTakeRecipes = [];
+    for (let i = 0; i < recipesList.length; i++) {
+      if (
+        myIncludes(recipesList[i].name.toString().toLowerCase(), value.toString().toLowerCase()) ||
+        myIncludes(
+          recipesList[i].description.toString().toLowerCase(),
+          value.toString().toLowerCase()
+        )
+      ) {
+        tabTakeRecipes.push(recipesList[i]);
+      }
+      let ingredientsTab = recipesList[i].ingredients;
+      for (let j = 0; j < ingredientsTab.length; j++) {
+        if (
+          myIncludes(
+            ingredientsTab[j].ingredient.toString().toLowerCase(),
+            value.toString().toLowerCase()
+          )
+        ) {
+          tabTakeRecipes.push(recipesList[i]);
+        }
+      }
+    }
 
-    // let tabTakeRecipes = [];
-    // for (let i = 0; i < recipesList.length; i++) {
-    //   if (
-    //     myIncludes(recipesList[i].name.toString().toLowerCase(), value.toString().toLowerCase()) ||
-    //     myIncludes(
-    //       recipesList[i].description.toString().toLowerCase(),
-    //       value.toString().toLowerCase()
-    //     )
-    //   ) {
-    //     tabTakeRecipes.push(recipesList[i]);
-    //   }
-    //   let ingredientsTab = recipesList[i].ingredients;
-    //   for (let j = 0; j < ingredientsTab.length; j++) {
-    //     if (
-    //       myIncludes(
-    //         ingredientsTab[j].ingredient.toString().toLowerCase(),
-    //         value.toString().toLowerCase()
-    //       )
-    //     ) {
-    //       tabTakeRecipes.push(recipesList[i]);
-    //     }
-    //   }
-    // }
-    // resultResearchInPage = Array.from(new Set([...tabTakeRecipes]));
+    resultResearchInPage = Array.from(new Set([...tabTakeRecipes]));
 
-    // console.log(Array.from(new Set(resultResearchInPage)));
-    // console.log(resultResearchInPage);
     // appeler fonction pour mettre à jour la section avec les résultats de la recherche
     updateRecipesSection(resultResearchInPage);
 
@@ -187,7 +118,6 @@ bigSearchBar.addEventListener('input', (e) => {
     recipesList = '';
     recipesList = [...recipesListOriginal];
     updateRecipesSection(recipesList);
-    // actualizedRecipesList = recipesList;
   }
 });
 
@@ -205,7 +135,6 @@ const input3 = document.getElementById('inpBtn3');
 const ulBtn1 = document.getElementById('ulBtn1');
 const ulBtn2 = document.getElementById('ulBtn2');
 const ulBtn3 = document.getElementById('ulBtn3');
-// const parentTagSection = document.getElementById('tagSection');
 const tagSection = document.getElementById('tags');
 
 // tableaux pour travailler les diverses listes liées aux boutons de filtres
@@ -263,7 +192,7 @@ ulBtn1.addEventListener('click', (e) => {
     value = e.target.getAttribute('id').replace(/-/g, ' ');
     stringId = 'ing';
     addTags(value, stringId);
-    displayListByTag(value, stringId);
+    displayListByTag(value);
   }
 });
 
@@ -274,7 +203,7 @@ ulBtn2.addEventListener('click', (e) => {
     value = e.target.getAttribute('id').replace(/-/g, ' ');
     stringId = 'app';
     addTags(value, stringId);
-    displayListByTag(value, stringId);
+    displayListByTag(value);
   }
 });
 
@@ -285,7 +214,7 @@ ulBtn3.addEventListener('click', (e) => {
     value = e.target.getAttribute('id').replace(/-/g, ' ');
     stringId = 'ust';
     addTags(value, stringId);
-    displayListByTag(value, stringId);
+    displayListByTag(value);
   }
 });
 
@@ -332,7 +261,6 @@ document.addEventListener('click', function (e) {
   const div = document.getElementById(e.target.parentElement.parentElement.id);
   let stringId = '';
   if (e.target.classList == 'icnCross') {
-    // removeTags(e);
     if (div.classList.contains('tagLi-ing')) {
       stringId = 'ing';
       removeTags(e, stringId);
@@ -389,10 +317,30 @@ function displayListByTag(value, stringId, calledByRemoveTags, isEmptyString) {
     )
   );
 
+  let valueSearchTerm = document.getElementById('searchTerm').value;
+
   // si la fonction a été appelée par la fonction removeTags et que les tags sont vides
   if (!isEmpty(calledByRemoveTags)) {
     if (isEmptyString) {
       resultResearchInPage = [...recipesListOriginal];
+    }
+  }
+  // si on a supprimé tous les tags et qu'il y a une valeur dans le principal input, on revient à l'état du principal input
+  if (isEmpty(tagsExist)) {
+    if (!isEmpty(valueSearchTerm)) {
+      if (valueSearchTerm.length >= 3) {
+        resultResearchInPage = recipesList.filter(
+          (recipe) =>
+            recipe.name.toLowerCase().includes(valueSearchTerm.toLowerCase()) ||
+            recipe.description.toLowerCase().includes(valueSearchTerm.toLowerCase()) ||
+            recipe.ingredients.some((ingredient) =>
+              ingredient.ingredient
+                .toString()
+                .toLowerCase()
+                .includes(valueSearchTerm.toString().toLowerCase())
+            )
+        );
+      }
     }
   }
   // appeler fonction pour mettre à jour la section avec les résultats de la recherche
@@ -404,7 +352,7 @@ function displayListByTag(value, stringId, calledByRemoveTags, isEmptyString) {
   }
 }
 
-// ------------------- fonction appelée au click sur bouton ---------------------
+// ------------------- fonctions appelées au click sur boutons ---------------------
 
 function ulComportement(arg1, arg2, arg3, arg4) {
   if (arg3.length <= 10) {
@@ -524,12 +472,7 @@ function gestureBtn3() {
   for (let i = 0; i < arrUstensilesOnPage.length; i++) {
     const li = document.createElement('li');
     li.innerHTML = arrUstensilesOnPage[i];
-    // li.setAttribute('id', i);
     li.setAttribute('id', arrUstensilesOnPage[i].toLowerCase().trim().replace(/\s/g, '-'));
-    // li.setAttribute(
-    //   'id',
-    //   tabIngcompleteSorted[i].toLowerCase().trim().replace(/\s/g, '-') + '-' + i
-    // );
     if (i < 30) ulBtn3.appendChild(li);
   }
   //   // comportement visuel de l'input et du sous menu "ul"
@@ -551,7 +494,6 @@ btn1.addEventListener('click', () => {
       recipesList = [...recipesListOriginal];
     }
 
-    // O(n^2) ou O(n²)
     //////////////////////////////////////
     if (value.length >= 3) {
       ulBtn1.innerHTML = '';
@@ -685,26 +627,22 @@ btn3.addEventListener('click', () => {
   ulBtn3.classList.remove('hidden');
 });
 
-// ------------------- fonction pour refermer input "ingredients" ---------------------
+// ------------------- fonction pour refermer les 3 inputs secondaires ---------------------
 document.addEventListener('mouseup', (event) => {
   // if (!ulBtn1.classList.contains('hidden') && event.target !== document.querySelectorAll('li')) {
   if (!ulBtn1.classList.contains('hidden') && event.target !== ulBtn1) {
-    // if (!ulBtn1.classList.contains('hidden')) {
     ulBtn1.classList.add('hidden');
     contentInput1.style.display = 'none';
     btn1.style.display = 'flex';
   }
   if (!ulBtn2.classList.contains('hidden') && event.target !== ulBtn2) {
-    // if (!ulBtn1.classList.contains('hidden')) {
     ulBtn2.classList.add('hidden');
     contentInput2.style.display = 'none';
     btn2.style.display = 'flex';
   }
   if (!ulBtn3.classList.contains('hidden') && event.target !== ulBtn3) {
-    // if (!ulBtn1.classList.contains('hidden')) {
     ulBtn3.classList.add('hidden');
     contentInput3.style.display = 'none';
     btn3.style.display = 'flex';
   }
 });
-///////////////////////////////////

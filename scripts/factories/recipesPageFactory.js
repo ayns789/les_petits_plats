@@ -1,32 +1,6 @@
 export function recipesPageFactory() {
+  // création des éléments nécessaires pour les données
   function getRecipeCard(recipe) {
-    // console.log(recipe.ingredients[0].ingredient)
-    // console.log(recipe.ingredients[0])
-    // console.log(recipe)
-
-    /////////////////////////////////////////////////
-
-    // let line = [];
-    //     for (let i = 0; i < recipe.ingredients.length; i++) {
-    //          line += recipe.ingredients[i].ingredient;
-    //          if(recipe.ingredients[i].quantity)line += ": " + recipe.ingredients[i].quantity;
-    //          if(recipe.ingredients[i].unit)line += " " + recipe.ingredients[i].unit
-    //     }
-    // console.log(line)
-    // let paragIngredients = document.createElement("p");
-    // // let line = [];
-    //     for (let i = 0; i < recipe.ingredients.length; i++) {
-    //         if(!recipe.ingredients[i].quantity)paragIngredients += recipe.ingredients[i].ingredient + "</br>";
-    //         if(recipe.ingredients[i].quantity && !recipe.ingredients[i].unit)paragIngredients += recipe.ingredients[i].ingredient + ": " + recipe.ingredients[i].quantity + "</br>";
-    //         if(recipe.ingredients[i].unit)paragIngredients += recipe.ingredients[i].ingredient + ": " + recipe.ingredients[i].quantity + " " + recipe.ingredients[i].unit + "</br>"
-    //     }
-    //     // console.log(line)
-    //     console.log(paragIngredients)
-
-    //////////////
-
-    // création des éléments nécessaires pour les données
-
     // div qui va tout englober
     const cardContent = document.createElement('div');
 
@@ -56,7 +30,6 @@ export function recipesPageFactory() {
     blockNameHeader.classList.add('blockNameHeader');
     recipeName.classList.add('recipeName');
     blockTimeRecipe.classList.add('blockTimeRecipe');
-    // imgHorloge.classList.add("imgHorloge");
     timeHeader.classList.add('timeHeader');
     blockListIngredients.classList.add('blockListIngredients');
     blockRecipeDescription.classList.add('blockRecipeDescription');
@@ -81,13 +54,10 @@ export function recipesPageFactory() {
       alt: "icone d'une horloge",
       class: 'icnHorloge',
     });
-    {
-      /* <span class="nameIng"></span> */
-    }
+
     timeHeader.textContent = recipe.time + ' min';
 
     let testParag = [];
-    let tabIngInPage = [];
 
     for (let i = 0; i < recipe.ingredients.length; i++) {
       if (!recipe.ingredients[i].quantity)
@@ -142,22 +112,7 @@ export function recipesPageFactory() {
       }
     }
 
-    // for (let i = 0; i < line.length; i++) {
-    //   testParag += line;
-    // }
-    // console.log(testParag[0]);
-    // return testParag;
-    // }
-
-    // .substring(14, 140)
-    // paragIngredients.innerHTML = getValParag();
     paragIngredients.innerHTML = testParag;
-    // paragIngredients.innerHTML = testParag.substring(9, 300);
-    //  testParag.substring(9, 200)
-
-    // console.log(testParag.substring(9, 200))
-    // console.log(paragIngredients)
-
     recipeDescription.textContent = recipe.description;
 
     // placement des contenus dans les contenants
@@ -181,16 +136,6 @@ export function recipesPageFactory() {
 
     return cardContent;
   }
-
-  // function getHeaderRecipeCard(){
-
-  // }
-  // function getIngredientsRecipeCard(){
-
-  // }
-  // function getDescriptionRecipeCard(){
-
-  // }
 
   return { getRecipeCard };
 }
