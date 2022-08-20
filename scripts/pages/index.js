@@ -18,7 +18,6 @@ async function getRecipes() {
   }
 
   recipes = recipesFile.recipes;
-  // console.log(recipes)
   localStorage.setItem('recipesList', JSON.stringify(recipes));
 
   return recipes;

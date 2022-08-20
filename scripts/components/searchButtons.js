@@ -281,7 +281,6 @@ function removeTags(e, stringId) {
   tagToRemove.remove();
   // on retrouve la totalité des tags restants pour la suite
   let tagsExist = [...document.querySelectorAll('#tags [id]')].map((elm) => elm.id);
-  // console.log(tagsExist);
   let calledByRemoveTags = 'calledByRemoveTags';
   let isEmptyString = 'true';
 
