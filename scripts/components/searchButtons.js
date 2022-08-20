@@ -61,6 +61,7 @@ bigSearchBar.addEventListener('input', (e) => {
   recipesList = [...recipesListOriginal];
 
   if (value.length >= 3) {
+    // first algo
     resultResearchInPage = recipesList.filter(
       (recipe) =>
         recipe.name.toLowerCase().includes(value.toLowerCase()) ||
@@ -69,43 +70,8 @@ bigSearchBar.addEventListener('input', (e) => {
           ingredient.ingredient.toString().toLowerCase().includes(value.toString().toLowerCase())
         )
     );
-    /////////////
 
-    function myIncludes(container, value) {
-      let returnValue = false;
-      // si l'élément est présent, il renvoie la valeur de position
-      let testing = container.indexOf(value);
-      if (testing >= 0) {
-        returnValue = true;
-      }
-      return returnValue;
-    }
-
-    let tabTakeRecipes = [];
-    for (let i = 0; i < recipesList.length; i++) {
-      if (
-        myIncludes(recipesList[i].name.toString().toLowerCase(), value.toString().toLowerCase()) ||
-        myIncludes(
-          recipesList[i].description.toString().toLowerCase(),
-          value.toString().toLowerCase()
-        )
-      ) {
-        tabTakeRecipes.push(recipesList[i]);
-      }
-      let ingredientsTab = recipesList[i].ingredients;
-      for (let j = 0; j < ingredientsTab.length; j++) {
-        if (
-          myIncludes(
-            ingredientsTab[j].ingredient.toString().toLowerCase(),
-            value.toString().toLowerCase()
-          )
-        ) {
-          tabTakeRecipes.push(recipesList[i]);
-        }
-      }
-    }
-
-    resultResearchInPage = Array.from(new Set([...tabTakeRecipes]));
+    resultResearchInPage = Array.from(new Set([...resultResearchInPage]));
 
     // appeler fonction pour mettre à jour la section avec les résultats de la recherche
     updateRecipesSection(resultResearchInPage);
